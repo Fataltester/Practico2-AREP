@@ -4,13 +4,17 @@
 
 package edu.eci.arep.collatz;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 /**
  *
  * @author juan.mmendez
  */
+@SpringBootApplication
 public class Collatz {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        SpringApplication.run(Collatz.class,args);
     }
 }

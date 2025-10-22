@@ -27,7 +27,7 @@ public class ProxyController {
     private static String GET_URL;
     int selection;
     @GetMapping("/collatz")
-    public void proxyRespon(@RequestParam String value) throws ProtocolException, IOException{
+    public void proxyRespon(@RequestParam(value = "value", defaultValue = "13") String value) throws ProtocolException, IOException{
         GET_URL = ""+"?value="+value;
         HttpConnection(value);
     }

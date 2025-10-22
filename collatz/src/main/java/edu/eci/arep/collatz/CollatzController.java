@@ -4,9 +4,6 @@
  */
 package edu.eci.arep.collatz;
 
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,28 +15,29 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CollatzController {
     
-    private static LinkedHashMap collatzsecuence = new LinkedHashMap<>();
+    private static String collatzsecuence;
     
     @GetMapping("/collatz")
-    public ResponseEntity<String> collatzRespon(@RequestParam String value){
-        LinkedHashMap ans = collatz(value);
-        
-        return ResposeEntity.ok(200).body(ans);
+    public String collatzRespon(@RequestParam(value = "value", defaultValue = "13") String value){
+        String ans = collatz(Integer.valueOf(value));
+        return "{\"value\":\""+
+                ans + 
+                "\"}";
     }
     
-    private static LinkedHashMap collatz(int value){
+    private String collatz(Integer value){
         if(value == 1){
             return collatzsecuence;
-        }else if(value%2 == 0){
+        }else if(value%2 == 0.0){
             value = value/2;
-            collatzsecuence.put(value, value);
-            return collatz(value);
-        }else if(value%2 == 1){
+            collatzsecuence += value + " ->";
+            collatz(value);
+        }else if(value%2 == 1.0){
             value = (3*value)+1;
-            collatzsecuence.put(value, value);
-            return collatz((3*value)+1);
+            collatzsecuence += value + " -> ";
+            collatz(value);
         }
-        return null;
+        return collatzsecuence;
     }
     
 }
