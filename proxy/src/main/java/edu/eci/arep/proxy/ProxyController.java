@@ -28,7 +28,7 @@ public class ProxyController {
     int selection;
     @GetMapping("/collatz")
     public void proxyRespon(@RequestParam(value = "value", defaultValue = "13") String value) throws ProtocolException, IOException{
-        GET_URL = ""+"?value="+value;
+        GET_URL = "ec2-54-174-114-190.compute-1.amazonaws.com/collatz"+"?value="+value;
         HttpConnection(value);
     }
 
@@ -59,7 +59,7 @@ public class ProxyController {
             // print result
             System.out.println(response.toString());
         } else {
-            GET_URL = ""+"?value="+value;
+            GET_URL = "ec2-98-80-5-183.compute-1.amazonaws.com/collatz"+"?value="+value;
             HttpConnection(value);
         }
         System.out.println("GET DONE");
